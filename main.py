@@ -35,7 +35,7 @@ def smsforward():
     headers = {'Content-Type': 'application/json'}
 
     if not os.path.exists(tmpFile):
-        print(bcolors.WARNING + "[!] Last time not found. Setting it to the current date-time")
+        print(bcolors.WARNING + "[!] Last Time Not found, Setting It Up")
         tfile = open(tmpFile, "w")
         tfile.write(str(lastSMS))
         tfile.close()
