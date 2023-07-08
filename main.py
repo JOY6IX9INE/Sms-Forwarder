@@ -5,7 +5,7 @@ import time
 import re
 import requests
 
-webhook_url = "https://discord.com/api/v10/webhooks/1127219693850210344/cXnferwYNShJIf1x763iiLlrSFxdi9EA5il8Y8R-HMQ2CJEjF0cFjn5cueMuhTjn494o"
+webhook_url = "https://discord.com/api/webhooks/1127297653479317555/da85yxPHkXQfrYSvv2Ho8BhqqPg_h5qB1w034JVRJJuP-SOGhDyp9xmDaylppjHZbUGp"
 
 class bcolors:
     HEADER = '\033[95m'
@@ -51,7 +51,7 @@ def smsforward():
         if datetime.datetime.fromisoformat(j['received']) > lastSMS: 
             for f in filters:
                 if f in j['body'].lower() and j['type'] == "inbox":  
-                    print(f"{f} found")
+                    print("[!] Found A Otp Message, Forwarding To Discord...")
                     fullmsg = j['body']
                     numbers = re.findall(r'\d+', j['body']) 
                     numbers_str = ', '.join(numbers)
