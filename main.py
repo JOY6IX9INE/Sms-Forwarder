@@ -40,7 +40,7 @@ def smsforward():
         lastSMS = datetime.datetime.fromisoformat(tfile.read())
         tfile.close()
 
-    print(f"Last SMS forwarded on {lastSMS}")
+    #print(f"Last SMS forwarded on {lastSMS}")
     jdata = os.popen("termux-sms-list").read()  # Reading all SMSs using Termux API
     jd = json.loads(jdata)  # Storing JSON output
     #print(f"Reading {len(jd)} latest SMSs")
