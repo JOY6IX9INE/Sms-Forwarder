@@ -56,16 +56,20 @@ def smsforward():
                     numbers = re.findall(r'\d+', j['body']) 
                     numbers_str = ', '.join(numbers)
                     embed = {
-                        "title": fullmsg,
+                        "title": f"> {fullmsg}",
                         "description": f"```{numbers_str}```",
                         "author": {
-                            "name": "Otp SmS Forwarder By Joy",
-                            "icon_url": "https://cdn.discordapp.com/avatars/1116815519299940444/03a3d7c2cf901b4ee8905a42a53e703f.webp"
+                            "name": "OTP SMS FORWARDER BY JOY",
+                            "icon_url": "https://cdn.discordapp.com/emojis/1052840053950402600.png"
+                        },
+                        "thumbnail": {
+                            "url": "https://cdn.discordapp.com/emojis/1127296081710039180.png"
                         },
                         "footer": {
                             "text": "Forwarded From Smart Phone by SMS Forwarder",
-                            "icon_url": "https://cdn.discordapp.com/avatars/1116815519299940444/03a3d7c2cf901b4ee8905a42a53e703f.webp"
-                        }
+                            "icon_url": "https://cdn.discordapp.com/emojis/1095997599036739594.png"
+                        },
+                        "color": 0x00FF00
                     }
                     payload = {
                         "embeds": [embed]
