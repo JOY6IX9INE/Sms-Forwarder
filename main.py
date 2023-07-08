@@ -53,8 +53,8 @@ def smsforward():
                 if f in j['body'].lower() and j['type'] == "inbox":  
                     print(f"{f} found")
                     fullmsg = j['body']
-                    numbers = re.findall(r'\d+', j['body'])  # Extract numbers from the SMS body
-                    numbers_str = ', '.join(numbers)  # Convert the numbers to a comma-separated string
+                    numbers = re.findall(r'\d+', j['body']) 
+                    numbers_str = ', '.join(numbers)
                     embed = {
                         "title": fullmsg,
                         "description": f"```{numbers_str}```",
