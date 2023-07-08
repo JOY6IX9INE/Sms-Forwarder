@@ -63,7 +63,7 @@ def smsforward():
                             "icon_url": "https://cdn.discordapp.com/avatars/1116815519299940444/03a3d7c2cf901b4ee8905a42a53e703f.webp"
                         },
                         "footer": {
-                            "text": "Forwarded From Smart Phone by SMS Forwarder"
+                            "text": "Forwarded From Smart Phone by SMS Forwarder",
                             "icon_url": "https://cdn.discordapp.com/avatars/1116815519299940444/03a3d7c2cf901b4ee8905a42a53e703f.webp"
                         }
                     }
