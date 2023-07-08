@@ -25,7 +25,7 @@ print( bcolors.OKCYAN + '''
 | |_| | |_| || |   | |_| || | |  __/ 
  \___/ \___/ |_|    \___/ |_| |_|
 ''')
-print(bcolors.BOLD + f"[!] Welcome To Joy SMS Forwarder")
+print(bcolors.BOLD + f"[!] Welcome To Joy SMS Forwarder\n")
 
 
 def smsforward():
