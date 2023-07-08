@@ -76,12 +76,12 @@ def smsforward():
                     }
                     response = requests.post(webhook_url, headers=headers, json=payload) 
                     if response.status_code == 204:
-                        print(bcolors.BOLD + bcolors.OKBLUE + "[+] Message forwarded to Discord successfully")
+                        print(bcolors.BOLD + bcolors.OKBLUE + "[+] Successfully Forwarded Message To Discord ")
                         tfile = open(tmpFile, "w")
                         tfile.write(j['received'])
                         tfile.close()
                     else:
-                        print(bcolors.FAIL + "[!] Failed to forward message to Discord")
+                        print(bcolors.FAIL + "[!] Failed To Forward Message To Discord\n[!] Please Double Check If Everything Is Ok")
 
 smsforward()
 
