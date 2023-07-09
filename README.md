@@ -4,7 +4,7 @@ This is a Python script that forwards SMS messages to a Discord channel. It util
 
 ## Setup
 
-1. Install [Termux](https://termux.com/) on your Android device.
+1. Install [Termux](https://f-droid.org/repo/com.termux_118.apk) & [Termux Api](https://f-droid.org/repo/com.termux.api_51.apk) on your Android device.
 2. Install the required packages by running the following command in Termux:
 
    ```shell
