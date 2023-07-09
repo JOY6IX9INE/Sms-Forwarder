@@ -11,6 +11,7 @@ class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
     OKCYAN = '\033[96m'
+    RESET = '\033[0m'
     OKGREEN = '\033[92m'
     WARNING = '\033[93m'
     FAIL = '\033[91m'
@@ -25,9 +26,9 @@ print( bcolors.OKCYAN + '''
  _  | | | | \ V /  | | | || | | |_) |
 | |_| | |_| || |   | |_| || | |  __/ 
  \___/ \___/ |_|    \___/ |_| |_|
-''')
-print(bcolors.BOLD + bcolors.OKGREEN + f"[!] Welcome To Joy SMS Forwarder\n")
-print(bcolors.WARNING + "[!] You Can Press Ctrl + c To Exit The Script")
+''' + bcolors.RESET )
+print(bcolors.BOLD + bcolors.OKGREEN + f"[!] Welcome To Joy SMS Forwarder\n" + bcolors.RESET)
+print(bcolors.WARNING + "[!] You Can Press Ctrl + c To Exit The Script" + bcolors.RESET)
 
 def smsforward():
     lastSMS = datetime.datetime.now()
@@ -36,7 +37,7 @@ def smsforward():
     headers = {'Content-Type': 'application/json'}
 
     if not os.path.exists(tmpFile):
-        print(bcolors.WARNING + "[!] Last Time Not found, Setting It Up")
+        print(bcolors.WARNING + "[!] Last Time Not found, Setting It Up" + bcolors.RESET)
         tfile = open(tmpFile, "w")
         tfile.write(str(lastSMS))
         tfile.close()
@@ -52,7 +53,7 @@ def smsforward():
         if datetime.datetime.fromisoformat(j['received']) > lastSMS: 
             for f in filters:
                 if f in j['body'].lower() and j['type'] == "inbox":  
-                    print(bcolors.HEADER + "[!] Found A Otp Message, Forwarding To Discord...")
+                    print(bcolors.HEADER + "[!] Found A Otp Message, Forwarding To Discord..." + bcolors.RESET)
                     fullmsg = j['body']
                     numbers = re.findall(r'\d+', j['body']) 
                     numbers_str = ', '.join(numbers)
@@ -77,12 +78,12 @@ def smsforward():
                     }
                     response = requests.post(webhook_url, headers=headers, json=payload) 
                     if response.status_code == 204:
-                        print(bcolors.BOLD + bcolors.OKBLUE + "[+] Successfully Forwarded Message To Discord ")
+                        print(bcolors.BOLD + bcolors.OKBLUE + "[+] Successfully Forwarded Message To Discord" + bcolors.RESET)
                         tfile = open(tmpFile, "w")
                         tfile.write(j['received'])
                         tfile.close()
                     else:
-                        print(bcolors.FAIL + "[!] Failed To Forward Message To Discord\n[!] Please Double Check If Everything Is Ok")
+                        print(bcolors.FAIL + "[!] Failed To Forward Message To Discord\n[!] Please Double Check If Everything Is Ok" + bcolors.RESET)
 
 smsforward()
 
