@@ -25,7 +25,7 @@ print( bcolors.OKCYAN + '''
 | |_| | |_| || |   | |_| || | |  __/ 
  \___/ \___/ |_|    \___/ |_| |_|
 ''')
-print(bcolors.BOLD + f"[!] Welcome To Joy SMS Forwarder\n")
+print(bcolors.BOLD + bcolors.OKGREEN + f"[!] Welcome To Joy SMS Forwarder\n")
 
 
 def smsforward():
@@ -51,7 +51,7 @@ def smsforward():
         if datetime.datetime.fromisoformat(j['received']) > lastSMS: 
             for f in filters:
                 if f in j['body'].lower() and j['type'] == "inbox":  
-                    print("[!] Found A Otp Message, Forwarding To Discord...")
+                    print(bcolors.HEADER + "[!] Found A Otp Message, Forwarding To Discord...")
                     fullmsg = j['body']
                     numbers = re.findall(r'\d+', j['body']) 
                     numbers_str = ', '.join(numbers)
