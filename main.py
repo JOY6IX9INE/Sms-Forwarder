@@ -53,7 +53,7 @@ def smsforward():
         if datetime.datetime.fromisoformat(j['received']) > lastSMS: 
             for f in filters:
                 if f in j['body'].lower() and j['type'] == "inbox":  
-                    print(bcolors.HEADER + "[!] Found A Otp Message, Forwarding To Discord..." + bcolors.RESET)
+                    print(bcolors.RESET + "[!] Found A Otp Message, Forwarding To Discord..." + bcolors.RESET)
                     fullmsg = j['body']
                     numbers = re.findall(r'\d+', j['body']) 
                     numbers_str = ', '.join(numbers)
