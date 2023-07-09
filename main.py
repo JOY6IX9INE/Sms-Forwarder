@@ -5,7 +5,8 @@ import time
 import re
 import requests
 
-webhook_url = "https://discord.com/api/webhooks/1127297653479317555/da85yxPHkXQfrYSvv2Ho8BhqqPg_h5qB1w034JVRJJuP-SOGhDyp9xmDaylppjHZbUGp"
+# Add your webhook link here
+webhook_url = "https://discord.com/api/webhooks/XXXX/XXXX"
 
 class bcolors:
     HEADER = '\033[95m'
