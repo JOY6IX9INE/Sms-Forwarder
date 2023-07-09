@@ -1,6 +1,6 @@
 # Joy SMS Forwarder
 
-This is a Python script that forwards SMS messages to a Discord channel. It utilizes the Termux API to access SMS messages on an Android device and sends the OTP messages to Discord using a webhook.
+This is a Python script that forwards SMS messages to a Discord channel. It utilizes the Termux API to access SMS messages on an Android device and sends the messages to Discord using a webhook.
 
 ## Setup
 
