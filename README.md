@@ -1,6 +1,6 @@
 # Joy SMS Forwarder
 
-This is a Python script that forwards OTP (One Time Password) SMS messages to a Discord channel. It utilizes the Termux API to access SMS messages on an Android device and sends the OTP messages to Discord using a webhook.
+This is a Python script that forwards SMS messages to a Discord channel. It utilizes the Termux API to access SMS messages on an Android device and sends the OTP messages to Discord using a webhook.
 
 ## Setup
 
@@ -15,13 +15,13 @@ This is a Python script that forwards OTP (One Time Password) SMS messages to a 
 3. Clone this repository by running the following command:
 
    ```shell
-   git clone https://github.com/JOY6IX9INE/OTP-FORWARDER
+   git clone https://github.com/JOY6IX9INE/SMS-FORWARDER
    ```
 
 4. Change to the cloned directory:
 
    ```shell
-   cd OTP-FORWARDER
+   cd SMS-FORWARDER
    ```
 
 5. Install the necessary Python packages by running the following command:
@@ -40,7 +40,7 @@ This is a Python script that forwards OTP (One Time Password) SMS messages to a 
 2. Change to the directory where the script is located:
 
    ```shell
-   cd path/to/OTP-FORWARDER
+   cd path/to/SMS-FORWARDER
    ```
 
 3. Run the script by executing the following command:
@@ -49,11 +49,11 @@ This is a Python script that forwards OTP (One Time Password) SMS messages to a 
    python main.py
    ```
 
-4. The script will start monitoring SMS messages and forward any OTP messages it detects to the specified Discord channel.
+4. The script will start monitoring SMS messages and forward any messages it detects to the specified Discord channel.
 
 ## Additional Notes
 
-- You can customize the filters used to detect OTP messages by modifying the `filters` list in the script. Add or remove keywords as needed.
+- You can customize the filters used to detect OTP or other messages by modifying the `filters` list in the script. Add or remove keywords as needed.
 - Press `Ctrl + C` to stop the script.
 
 **Note:** This script is specifically designed for Android devices running Termux and may not work on other platforms.
