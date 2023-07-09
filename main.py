@@ -27,7 +27,7 @@ print( bcolors.OKCYAN + '''
  \___/ \___/ |_|    \___/ |_| |_|
 ''')
 print(bcolors.BOLD + bcolors.OKGREEN + f"[!] Welcome To Joy SMS Forwarder\n")
-
+print(bcolors.WARNING + "[!] You Can Press Ctrl + c To Exit The Script")
 
 def smsforward():
     lastSMS = datetime.datetime.now()
