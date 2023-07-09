@@ -8,19 +8,20 @@ This is a Python script that forwards OTP (One Time Password) SMS messages to a 
 2. Install the required packages by running the following command in Termux:
 
    ```shell
-   pkg install python git
+   pkg install python
+   pkg install git
    ```
 
 3. Clone this repository by running the following command:
 
    ```shell
-   git clone https://github.com/your-username/your-repo.git
+   git clone https://github.com/JOY6IX9INE/OTP-FORWARDER
    ```
 
 4. Change to the cloned directory:
 
    ```shell
-   cd your-repo
+   cd OTP-FORWARDER
    ```
 
 5. Install the necessary Python packages by running the following command:
@@ -29,7 +30,7 @@ This is a Python script that forwards OTP (One Time Password) SMS messages to a 
    pip install -r requirements.txt
    ```
 
-6. Open the script file `sms_forwarder.py` in a text editor and replace the `webhook_url` variable with your Discord webhook URL. Make sure the URL is valid and has the appropriate permissions.
+6. Open the script file `main.py` in a text editor and replace the `webhook_url` variable with your Discord webhook URL. Make sure the URL is valid and has the appropriate permissions.
 
 7. Save the changes to the script file.
 
@@ -39,13 +40,13 @@ This is a Python script that forwards OTP (One Time Password) SMS messages to a 
 2. Change to the directory where the script is located:
 
    ```shell
-   cd path/to/your-repo
+   cd path/to/OTP-FORWARDER
    ```
 
 3. Run the script by executing the following command:
 
    ```shell
-   python sms_forwarder.py
+   python main.py
    ```
 
 4. The script will start monitoring SMS messages and forward any OTP messages it detects to the specified Discord channel.
