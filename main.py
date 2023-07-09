@@ -18,6 +18,7 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+os.system('clear')
 print( bcolors.OKCYAN + '''
      _  _____   __   ___ _____ ____  
     | |/ _ \ \ / /  / _ \_   _|  _ \ 
