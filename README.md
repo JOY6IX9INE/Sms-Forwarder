@@ -1,4 +1,4 @@
-# Joy SMS Forwarder
+# SMS Forwarder
 
 This is a Python script that forwards SMS messages to a Discord channel. It utilizes the Termux API to access SMS messages on an Android device and sends the messages to Discord using a webhook.
 
@@ -15,7 +15,7 @@ This is a Python script that forwards SMS messages to a Discord channel. It util
 3. Clone this repository by running the following command:
 
    ```shell
-   git clone https://github.com/JOY6IX9INE/SMS-FORWARDER
+   git clone https://github.com/JOY6IX9INE/Sms-Forwarder
    ```
 
 4. Change to the cloned directory:
@@ -40,7 +40,7 @@ This is a Python script that forwards SMS messages to a Discord channel. It util
 2. Change to the directory where the script is located:
 
    ```shell
-   cd path/to/SMS-FORWARDER
+   cd path/to/Sms-Forwarder
    ```
 
 3. Run the script by executing the following command:
