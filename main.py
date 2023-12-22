@@ -30,7 +30,7 @@ class SMSForwarder:
             "title": full_message,
             "description": f"```{numbers_str}```",
             "author": {
-                "name": "OTP SMS FORWARDER BY JOY",
+                "name": "OTP SMS FORWARDER",
                 "icon_url": "https://cdn.discordapp.com/emojis/1052840053950402600.png"
             },
             "thumbnail": {
