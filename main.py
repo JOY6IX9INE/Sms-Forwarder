@@ -5,89 +5,84 @@ import time
 import re
 import requests
 
-# Add your webhook link here
-webhook_url = "https://discord.com/api/webhooks/XXXX/XXXX"
+class SMSForwarder:
+    def __init__(self):
+        self.webhook_url = "https://discord.com/api/webhooks/XXXX/XXXX"
+        self.last_sms_time = self._get_last_sms_time()
+        self.filters = ["otp", "one time password", "OTP"]
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    RESET = '\033[0m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+    def _get_last_sms_time(self):
+        tmp_file = "tmpLastTime.txt"
+        if os.path.exists(tmp_file):
+            with open(tmp_file, "r") as file:
+                return datetime.datetime.fromisoformat(file.read())
+        else:
+            last_sms = datetime.datetime.now()
+            with open(tmp_file, "w") as file:
+                file.write(str(last_sms))
+            return last_sms
 
-os.system('clear')
-print( bcolors.OKCYAN + '''
+    def _update_last_sms_time(self, timestamp):
+        tmp_file = "tmpLastTime.txt"
+        with open(tmp_file, "w") as file:
+            file.write(timestamp)
+
+    def _send_to_discord(self, message, numbers):
+        headers = {'Content-Type': 'application/json'}
+        full_message = f"> {message}"
+        numbers_str = ', '.join(numbers)
+        embed = {
+            "title": full_message,
+            "description": f"```{numbers_str}```",
+            "author": {
+                "name": "OTP SMS FORWARDER BY JOY",
+                "icon_url": "https://cdn.discordapp.com/emojis/1052840053950402600.png"
+            },
+            "thumbnail": {
+                "url": "https://cdn.discordapp.com/emojis/1127296081710039180.png"
+            },
+            "footer": {
+                "text": "Forwarded From Smart Phone by SMS Forwarder",
+                "icon_url": "https://cdn.discordapp.com/emojis/1095997599036739594.png"
+            },
+            "color": 0x00FF00
+        }
+        payload = {"embeds": [embed]}
+        response = requests.post(self.webhook_url, headers=headers, json=payload)
+        return response
+
+    def process_sms(self, sms):
+        if datetime.datetime.fromisoformat(sms['received']) > self.last_sms_time:
+            for f in self.filters:
+                if f in sms['body'].lower() and sms['type'] == "inbox":
+                    print("[!] Found an OTP Message, Forwarding to Discord...")
+                    response = self._send_to_discord(sms['body'], re.findall(r'\d+', sms['body']))
+                    if response.status_code == 204:
+                        print("[+] Successfully Forwarded Message to Discord")
+                        self._update_last_sms_time(sms['received'])
+                    else:
+                        print("[!] Failed to Forward Message to Discord\n[!] Please Double Check if Everything is OK")
+
+def main():
+    os.system('clear')
+    print("""
      _  _____   __   ___ _____ ____  
     | |/ _ \ \ / /  / _ \_   _|  _ \ 
  _  | | | | \ V /  | | | || | | |_) |
 | |_| | |_| || |   | |_| || | |  __/ 
- \___/ \___/ |_|    \___/ |_| |_|
-''' + bcolors.RESET )
-print(bcolors.BOLD + bcolors.OKGREEN + f"[!] Welcome To Joy SMS Forwarder\n" + bcolors.RESET)
-print(bcolors.WARNING + "[!] You Can Press Ctrl + c To Exit The Script" + bcolors.RESET)
+ \___/ \___/ |_|    \___/ |_| |_|""")
+    print("[!] Welcome to Joy SMS Forwarder")
+    print("[!] You Can Press Ctrl + c To Exit The Script")
 
-def smsforward():
-    lastSMS = datetime.datetime.now()
-    tmpFile = "tmpLastTime.txt"
-    filters = ["otp", "one time password", "OTP"]  # Add your filters here
-    headers = {'Content-Type': 'application/json'}
+    forwarder = SMSForwarder()
 
-    if not os.path.exists(tmpFile):
-        print(bcolors.WARNING + "[!] Last Time Not found, Setting It Up" + bcolors.RESET)
-        tfile = open(tmpFile, "w")
-        tfile.write(str(lastSMS))
-        tfile.close()
-    else:
-        tfile = open(tmpFile, "r")
-        lastSMS = datetime.datetime.fromisoformat(tfile.read())
-        tfile.close()
+    while True:
+        time.sleep(1)
+        jdata = os.popen("termux-sms-list").read()
+        jd = json.loads(jdata)
 
-    jdata = os.popen("termux-sms-list").read() 
-    jd = json.loads(jdata)
+        for j in jd:
+            forwarder.process_sms(j)
 
-    for j in jd:
-        if datetime.datetime.fromisoformat(j['received']) > lastSMS: 
-            for f in filters:
-                if f in j['body'].lower() and j['type'] == "inbox":  
-                    print(bcolors.RESET + "[!] Found A Otp Message, Forwarding To Discord..." + bcolors.RESET)
-                    fullmsg = j['body']
-                    numbers = re.findall(r'\d+', j['body']) 
-                    numbers_str = ', '.join(numbers)
-                    embed = {
-                        "title": f"> {fullmsg}",
-                        "description": f"```{numbers_str}```",
-                        "author": {
-                            "name": "OTP SMS FORWARDER BY JOY",
-                            "icon_url": "https://cdn.discordapp.com/emojis/1052840053950402600.png"
-                        },
-                        "thumbnail": {
-                            "url": "https://cdn.discordapp.com/emojis/1127296081710039180.png"
-                        },
-                        "footer": {
-                            "text": "Forwarded From Smart Phone by SMS Forwarder",
-                            "icon_url": "https://cdn.discordapp.com/emojis/1095997599036739594.png"
-                        },
-                        "color": 0x00FF00
-                    }
-                    payload = {
-                        "embeds": [embed]
-                    }
-                    response = requests.post(webhook_url, headers=headers, json=payload) 
-                    if response.status_code == 204:
-                        print(bcolors.BOLD + bcolors.OKBLUE + "[+] Successfully Forwarded Message To Discord" + bcolors.RESET)
-                        tfile = open(tmpFile, "w")
-                        tfile.write(j['received'])
-                        tfile.close()
-                    else:
-                        print(bcolors.FAIL + "[!] Failed To Forward Message To Discord\n[!] Please Double Check If Everything Is Ok" + bcolors.RESET)
-
-smsforward()
-
-while True:
-    time.sleep(1)
-    smsforward()
+if __name__ == "__main__":
+    main()
