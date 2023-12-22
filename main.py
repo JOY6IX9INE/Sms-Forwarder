@@ -1,9 +1,4 @@
-import os
-import json
-import datetime
-import time
-import re
-import requests
+import os, json, datetime, time, requests, re
 
 class SMSForwarder:
     def __init__(self):
