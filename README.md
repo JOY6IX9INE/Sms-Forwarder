@@ -58,6 +58,5 @@ This is a Python script that forwards SMS messages to a Discord channel. It util
 
 **Note:** This script is specifically designed for Android devices running Termux and may not work on other platforms.
 
-## Disclaimer
-
-Please use this script responsibly and respect the privacy of others. Be aware of the legal and ethical implications of intercepting and forwarding SMS messages.
+# Disclaimer
+This tool is created for educational purposes and ethical use only. Any misuse of this tool for malicious purposes is not condoned. The developers of this tool are not responsible for any illegal or unethical activities carried out using this tool.
